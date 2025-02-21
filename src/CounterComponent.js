@@ -1,55 +1,42 @@
 import { useState } from "react";
-
+import "bootstrap/dist/css/bootstrap.min.css"; 
 
 function CounterComponent() {
     let [count, setCount] = useState(1); 
 
     return (
-        <div>
-            <HeaderComponent />
-            <ParagraphComponent />
-            <CounterControls count={count} setCount={setCount} /> 
-           
-        </div>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="card p-4 shadow-lg" style={{ width: "350px" }}>
+                <div className="card-body text-center">
+                    <HeaderComponent />
+                    <ParagraphComponent />
+                    <CounterControls count={count} setCount={setCount} /> 
+                </div>  
+            </div>
+        </div> 
     );
 }
-
 
 function CounterControls({ count, setCount }) {
-    const addCounter = () => {
-        setCount(count + 1);
-    };
-
-    const subtractCounter = () => {
-        setCount(count - 1);
-    };
-
-    const doubleCounter = () => {
-        setCount(count * 2);
-    };
-
-    const resetCounter = () => {
-        setCount(0);
-    };
-
     return (
         <div>
-            <h4>{count}</h4>
-            <button onClick={addCounter}>Add Counter</button>
-            <button onClick={subtractCounter}>Subtract Counter</button>
-            <button onClick={doubleCounter}>Double Counter</button>
-            <button onClick={resetCounter}>Reset Counter</button>
+            <h4 className="my-3">{count}</h4>
+            <div className="d-flex flex-wrap gap-2 justify-content-center">
+                <button className="btn btn-primary" onClick={() => setCount(count + 1)}>Add</button>
+                <button className="btn btn-danger" onClick={() => setCount(count - 1)}>Subtract</button>
+                <button className="btn btn-warning" onClick={() => setCount(count * 2)}>Double</button>
+                <button className="btn btn-secondary" onClick={() => setCount(0)}>Reset</button>
+            </div>
         </div>
     );
 }
 
-
 function HeaderComponent() {
-    return <h1>My First React App</h1>;
+    return <h2 className="card-title">My First React App</h2>;
 }
 
 function ParagraphComponent() {
-    return <p>This is a simple paragraph</p>;
+    return <p className="card-text">This is a simple counter inside a Bootstrap card.</p>;
 }
 
 export default CounterComponent;
